@@ -13,6 +13,13 @@ class Transcrever_e_legendar:
         self.model = whisper.load_model(modelo_whisper)
         self.video_name = os.path.splitext(os.path.basename(video))[0]
 
+    def extrair_audio_old(self):
+        """Recebe o arquivo de vídeo e extrai o áudio para '.wav'."""
+        meu_audio = VideoFileClip(self.video).audio
+        caminho_audio = f'{self.video_name}.wav'
+        meu_audio.write_audiofile(caminho_audio, codec="pcm_s16le")
+        return caminho_audio
+    
     def extrair_audio(self):
         """Recebe o arquivo de vídeo e extrai o áudio para '.wav'."""
         meu_audio = VideoFileClip(self.video).audio
